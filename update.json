@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "available": false,
+  "message": "No stable APK release published yet.",
+  "versionName": null,
+  "versionCode": null,
+  "apkUrl": null,
+  "sha256": null,
+  "mandatory": false,
+  "changelog": ""
+}
