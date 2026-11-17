@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "available": true,
-  "versionName": "5.0.2",
-  "versionCode": 418,
-  "downloadUrl": "https://github.com/caomei3323886539-dev/Ayer-StarContract-Updates/releases/download/v5.0.2/Ayer_StarContract_v5.0.2_Release.apk",
-  "sha256": "c0cc79d877b102804509956666dd560492de178bec3d6de64dc3657cee7f9d2c",
-  "sizeBytes": 37134059,
+  "versionName": "5.0.4",
+  "versionCode": 420,
+  "downloadUrl": "https://github.com/caomei3323886539-dev/Ayer-StarContract-Updates/releases/download/v5.0.4/Ayer_StarContract_v5.0.4_Release.apk",
+  "sha256": "5a1c7653fc655326b816b5edcb61ca2f3dae644e55bd277336e1e9ec8cf05781",
+  "sizeBytes": 37134955,
   "mandatory": false,
-  "notes": "Android-VersionCode: 418\n\n正式签名 Release APK。\n支持从 v5.0.1 覆盖更新，保留游戏数据。\n本次主要验证游戏内在线更新功能。"
+  "notes": "正式签名 APK v5.0.4。支持从旧版本覆盖更新并保留游戏存档。"
 }
