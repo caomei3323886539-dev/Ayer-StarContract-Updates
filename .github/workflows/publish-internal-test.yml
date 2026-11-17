@@ -1,0 +1,56 @@
+name: Publish internal test APK metadata
+on:
+  release:
+    types: [published]
+permissions:
+  contents: write
+concurrency:
+  group: apk-update-metadata
+  cancel-in-progress: false
+jobs:
+  publish-test:
+    if: ${{ github.event.release.prerelease && !github.event.release.draft }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Download prerelease APK
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          TAG: ${{ github.event.release.tag_name }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/ayer-test-release
+          gh release download "$TAG" --repo "$REPO" --pattern '*.apk' --dir /tmp/ayer-test-release
+          test "$(find /tmp/ayer-test-release -maxdepth 1 -name '*.apk' -type f | wc -l)" -eq 1
+      - name: Generate test metadata
+        env:
+          RELEASE_JSON: ${{ toJSON(github.event.release) }}
+        run: |
+          python3 - <<'PY'
+          import json,glob,hashlib,re,os,pathlib
+          release=json.loads(os.environ['RELEASE_JSON'])
+          match=re.fullmatch(r'v(\d+)\.(\d+)\.(\d+)-internal',release['tag_name'])
+          if not match:raise SystemExit('Internal tag must be vMAJOR.MINOR.PATCH-internal')
+          apk=glob.glob('/tmp/ayer-test-release/*.apk')[0]
+          assets=[a for a in release['assets'] if a['name']==os.path.basename(apk)]
+          if len(assets)!=1:raise SystemExit('Expected one matching release APK asset')
+          code=re.search(r'(?m)^Android-VersionCode:\s*(\d+)\s*$',release.get('body') or '')
+          if not code:raise SystemExit('Missing Android-VersionCode in prerelease notes')
+          with open(apk,'rb') as f: digest=hashlib.file_digest(f,'sha256').hexdigest()
+          data=dict(schemaVersion=1,available=True,versionName='.'.join(match.groups()),versionCode=int(code.group(1)),downloadUrl=assets[0]['browser_download_url'],sha256=digest,sizeBytes=os.path.getsize(apk),mandatory=False,notes='内部测试更新。'+(release.get('body') or ''))
+          pathlib.Path('test').mkdir(exist_ok=True)
+          pathlib.Path('test/update.json').write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          PY
+      - name: Commit test feed only
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add test/update.json
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: publish internal APK metadata for ${{ github.event.release.tag_name }}"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
