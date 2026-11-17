@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "available": false,
-  "versionName": "",
-  "versionCode": 0,
-  "downloadUrl": "",
-  "sha256": "",
-  "sizeBytes": 0,
+  "available": true,
+  "versionName": "5.0.8",
+  "versionCode": 424,
+  "downloadUrl": "https://github.com/caomei3323886539-dev/Ayer-StarContract-Updates/releases/download/v5.0.8-internal/Ayer_StarContract_v5.0.8_Internal.apk",
+  "sha256": "a481a1d983ff582b01b4b1f1738599db80b03e88f77e57f70348f01f63f766b7",
+  "sizeBytes": 37136427,
   "mandatory": false,
-  "notes": "内部测试通道：尚未发布测试更新。正式更新不受影响。"
+  "notes": "内部测试更新。Android-VersionCode: 424\n\n内部测试 APK，不属于正式更新。\n"
 }
