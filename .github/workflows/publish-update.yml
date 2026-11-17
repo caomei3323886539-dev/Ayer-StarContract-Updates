@@ -1,0 +1,56 @@
+name: Publish APK update metadata
+on:
+  release:
+    types: [published]
+permissions:
+  contents: write
+concurrency:
+  group: apk-update-metadata
+  cancel-in-progress: false
+jobs:
+  publish:
+    if: ${{ !github.event.release.prerelease && !github.event.release.draft }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: true
+      - name: Download release APK
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          TAG: ${{ github.event.release.tag_name }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/ayer-release
+          gh release download "$TAG" --repo "$REPO" --pattern '*.apk' --dir /tmp/ayer-release
+          count=$(find /tmp/ayer-release -maxdepth 1 -name '*.apk' -type f | wc -l)
+          test "$count" -eq 1 || { echo "Exactly one APK required, found $count"; exit 1; }
+      - name: Generate metadata
+        env:
+          RELEASE_JSON: ${{ toJSON(github.event.release) }}
+        run: |
+          python3 - <<'PY'
+          import json,glob,hashlib,re,os
+          release=json.loads(os.environ['RELEASE_JSON'])
+          match=re.fullmatch(r'v(\d+)\.(\d+)\.(\d+)',release['tag_name'])
+          if not match: raise SystemExit('Tag must be vMAJOR.MINOR.PATCH')
+          apk=glob.glob('/tmp/ayer-release/*.apk')[0]
+          asset=[a for a in release['assets'] if a['name']==os.path.basename(apk)]
+          if len(asset)!=1: raise SystemExit('APK release asset not found')
+          code=re.search(r'(?m)^Android-VersionCode:\s*(\d+)\s*$',release.get('body') or '')
+          if not code: raise SystemExit('Release notes must include Android-VersionCode: INTEGER')
+          with open(apk,'rb') as f: digest=hashlib.file_digest(f,'sha256').hexdigest()
+          result=dict(schemaVersion=1,available=True,versionName='.'.join(match.groups()),versionCode=int(code.group(1)),apkUrl=asset[0]['browser_download_url'],sha256=digest,mandatory=False,changelog=release.get('body') or '')
+          with open('update.json','w',encoding='utf8') as f:json.dump(result,f,ensure_ascii=False,indent=2);f.write('\n')
+          PY
+      - name: Commit manifest
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add update.json
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: publish APK update metadata for ${{ github.event.release.tag_name }}"
+            git push origin HEAD:main
+          fi
