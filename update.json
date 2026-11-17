@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "available": false,
-  "message": "No stable APK release published yet.",
   "versionName": null,
   "versionCode": null,
-  "apkUrl": null,
+  "downloadUrl": null,
   "sha256": null,
+  "sizeBytes": null,
   "mandatory": false,
-  "changelog": ""
+  "notes": "尚未发布正式 APK 更新。"
 }
