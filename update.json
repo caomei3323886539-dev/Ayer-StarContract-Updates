@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "available": true,
-  "versionName": "5.1.0-offline-beta1",
-  "versionCode": 510000,
-  "downloadUrl": "https://github.com/caomei3323886539-dev/Ayer-StarContract-Updates/releases/download/v5.1.0-offline-beta1/Ayer_StarContract_v5.1.0_Offline_Beta1.apk",
-  "sha256": "4c2e35548e65036c97a05a801045d3797b69ea525444aad164b33139223d9178",
-  "sizeBytes": 37153091,
+  "versionName": "5.1.1-ota-validation",
+  "versionCode": 510001,
+  "downloadUrl": "https://github.com/caomei3323886539-dev/Ayer-StarContract-Updates/releases/download/v5.1.1-ota-validation/Ayer_StarContract_v5.1.1_OTA_Validation.apk",
+  "sha256": "cd11d72200f1504530f55810b0905a6d5cff4efbce7e3d0a4b6bb796aa6970b4",
+  "sizeBytes": 37153167,
   "mandatory": false,
-  "notes": "v5.1.0 离线公测 Beta 1：固定竖屏，保留原有卡组、卡牌和存档，精简非战斗难度选项；支持离线游玩与手动确认更新安装。请先备份存档。"
+  "notes": "v5.1.1 OTA 验证版：固定竖屏，保留原有卡组、卡牌和存档，精简非战斗难度选项；支持离线游玩与手动确认更新安装。请先备份存档。"
 }
