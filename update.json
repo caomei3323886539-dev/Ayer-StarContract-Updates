@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "available": true,
-  "versionName": "5.2.3",
-  "versionCode": 520008,
-  "downloadUrl": "https://github.com/caomei3323886539-dev/Ayer-StarContract-Updates/releases/download/v5.2.3/Ayer_StarContract_v5.2.3_Release.apk",
-  "sha256": "c1b1e06d9f1e091574b747393c8e015ffaadfd2702517533463512318aeaa2a6",
-  "sizeBytes": 37162246,
+  "versionName": "5.2.4",
+  "versionCode": 520010,
+  "downloadUrl": "https://github.com/caomei3323886539-dev/Ayer-StarContract-Updates/releases/download/v5.2.4/Ayer_StarContract_v5.2.4_Release.apk",
+  "sha256": "32fe1bb84056e54b320a86ba7465ec5c8957c38bec478f4ad8e0098189cdbba9",
+  "sizeBytes": 37163939,
   "mandatory": false,
-  "notes": "v5.2.3 正式版：修复战斗页三个悬浮窗口未隐藏的问题，增强全页面按钮检测；清理主页历史测试模块。保留原存档、三卡槽战斗及离线功能。建议先备份存档。"
+  "notes": "v5.2.4 正式版：修复主页历史版本规则诊断、回归测试、RC 验收等卡片未隐藏的问题，优化主页长度。保留三卡槽战斗、离线游玩与原存档。建议先导出存档。"
 }
