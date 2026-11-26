@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "available": true,
-  "versionName": "5.2.0",
-  "versionCode": 520001,
-  "downloadUrl": "https://github.com/caomei3323886539-dev/Ayer-StarContract-Updates/releases/download/v5.2.0/Ayer_StarContract_v5.2.0_Release.apk",
-  "sha256": "7e1f83610f036eb10310ee194ac26e233c9fc45d7bc6502dde785497ba2ee998",
-  "sizeBytes": 37155384,
+  "versionName": "5.2.1",
+  "versionCode": 520004,
+  "downloadUrl": "https://github.com/caomei3323886539-dev/Ayer-StarContract-Updates/releases/download/v5.2.1/Ayer_StarContract_v5.2.1_Release.apk",
+  "sha256": "72f8a75232d6fe83130e74b1afd6ccb388aee21976d7703d41f50ebb9ae07543",
+  "sizeBytes": 37158046,
   "mandatory": false,
-  "notes": "v5.2.0 正式版：系统设置分类整合为常用／存档／指南／高级，优化竖屏操作；保留卡组、卡牌、离线游玩和原有存档。安装前建议导出存档。"
+  "notes": "v5.2.1 正式版：优化三卡槽竖屏战斗阅读、触控反馈与紧凑槽位显示，支持在常用设置中关闭增强；保留既有游戏、离线游玩和存档。安装前建议导出存档。"
 }
