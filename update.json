@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "available": true,
-  "versionName": "5.2.1",
-  "versionCode": 520004,
-  "downloadUrl": "https://github.com/caomei3323886539-dev/Ayer-StarContract-Updates/releases/download/v5.2.1/Ayer_StarContract_v5.2.1_Release.apk",
-  "sha256": "72f8a75232d6fe83130e74b1afd6ccb388aee21976d7703d41f50ebb9ae07543",
-  "sizeBytes": 37158046,
+  "versionName": "5.2.2",
+  "versionCode": 520006,
+  "downloadUrl": "https://github.com/caomei3323886539-dev/Ayer-StarContract-Updates/releases/download/v5.2.2/Ayer_StarContract_v5.2.2_Release.apk",
+  "sha256": "b2a461ee5910567ef026bd4eed7397aafa533ba7c60a4f06ef9fa93257554193",
+  "sizeBytes": 37160000,
   "mandatory": false,
-  "notes": "v5.2.1 正式版：优化三卡槽竖屏战斗阅读、触控反馈与紧凑槽位显示，支持在常用设置中关闭增强；保留既有游戏、离线游玩和存档。安装前建议导出存档。"
+  "notes": "v5.2.2 正式版：移除战斗页的战斗诊断、安全存档及新手指南悬浮入口；隐藏主页历史测试诊断卡片，减少下拉。保留三卡槽玩法、原存档与离线游玩。建议先备份存档。"
 }
